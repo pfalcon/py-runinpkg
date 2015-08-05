@@ -1,0 +1,42 @@
+Usecase:
+
+You develop a Python package. Following the best practices, you use
+relative imports for individual modules. But then you cannot have a
+test script inside package's directory to quickly test/try your
+modules. If you try, you're greeted with:
+
+SystemError: Parent module '' not loaded, cannot perform relative import
+
+So, you need to switch to parent directory and run it like:
+
+    python3 -m pkg.myscript
+
+Then switch back to package directory to edit, etc.
+
+At this point, you may start to think that Python perhaps has gone
+too enterprisey if merely developing a package requires all the
+mumbo-jumbo above or forces you to use some ugly IDE.
+
+runinpkg is to restore fun and simplicity in this aspect of Python
+development.
+
+This project provides a simple module (essentially, a runner), which
+sets up module environment to avoid the error above and make it work
+largely as expected.
+
+To use it, instead of usual invocation:
+
+    python3 script.py arg1 arg2 arg3
+
+Use:
+
+    python3 -m runinpkg script.py arg1 arg2 arg3
+
+You can make a wrapper shell script for the above, or perhaps just
+cut a space after "-m" and imagine it is a long option:
+
+    python3 -mruninpkg script.py arg1 arg2 arg3
+
+"runinpkg.py" needs to be installed somewhere on PYTHONPATH, e.g.
+dropped in the directory of package being developed. Installing from
+PyPI is coming soon.
