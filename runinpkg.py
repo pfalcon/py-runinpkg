@@ -24,5 +24,5 @@ else:
     sys.modules[""] = sys.modules["@"] = init
 
 fname = sys.argv[1]
-sys.argv = sys.argv[1:]
+del sys.argv[0]
 exec(open(fname).read(), _org_globals)
